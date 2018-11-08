@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 
 class Response extends Component {
 
-myFunction = () => {
 
-  var searchTerm = document.getElementById('inputText').value;
-  var url = "http://www.omdbapi.com/?t=" + searchTerm + "&apikey=5f41a62d";
-  const axios = require('axios');
-  
-}
 
-constructor(){
-  super();
+constructor(props){
+  super(props);
   this.state = {
-    imgSrc:  "",
-    movieTitle: "",
-    movieDesc: ""
+    imgSrc:  this.props.imgSrc,
+    movieTitle: this.props.movieTitle,
+    movieDesc: this.props.movieDesc
   }
 
+}
+
+updateButton(){
+    this.setState({
+    imgSrc:  this.props.imgSrc,
+    movieTitle: this.props.movieTitle,
+    movieDesc: this.props.movieDesc
+});
 }
 
   render() {
@@ -26,6 +28,7 @@ constructor(){
       <img id="movieImg" src={this.state.imgSrc}/>
       <h1 id="movieTitle">{this.state.movieTitle}</h1>
       <p id="movieDesc">{this.state.movieDesc}</p>
+      <button id="updateButton" onClick={this.updateButton}>Update</button>
       </div>
     );
   }
